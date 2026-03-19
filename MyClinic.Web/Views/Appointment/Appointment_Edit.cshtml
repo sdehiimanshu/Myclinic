@@ -1,0 +1,49 @@
+﻿@model MyClinic.Application.DTOs.AppointmentDto
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit Appointment";
+}
+
+<h2>Edit Appointment</h2>
+
+<form method="post">
+    <div class="mb-3">
+        <label>Name</label>
+        <input class="form-control" asp-for="Name" />
+    </div>
+
+    <div class="mb-3">
+        <label>Email</label>
+        <input class="form-control" asp-for="Email" />
+    </div>
+
+    <div class="mb-3">
+        <label>Phone</label>
+        <input class="form-control" asp-for="PhoneNumber" />
+    </div>
+
+    <div class="mb-3">
+        <label>Department</label>
+        <input class="form-control" asp-for="Department" />
+    </div>
+
+    <div class="mb-3">
+        <label>Appointment Date</label>
+        <input type="date" class="form-control" asp-for="AppointmentDate" />
+    </div>
+
+    <div class="mb-3">
+        <label>Doctor</label>
+        <input class="form-control" asp-for="DoctorName" />
+    </div>
+
+    <div class="mb-3">
+        <label>Message</label>
+        <textarea class="form-control" asp-for="Message"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update</button>
+    <a asp-action="Appointments" class="btn btn-secondary">Cancel</a>
+</form>
+

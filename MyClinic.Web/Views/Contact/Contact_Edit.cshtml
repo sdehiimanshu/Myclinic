@@ -1,0 +1,44 @@
+﻿@model MyClinic.Application.DTOs.ContactQueryDto
+
+@{
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Edit Contact Query";
+}
+
+<h2>Edit Contact Query</h2>
+
+<form asp-controller="Admin"
+      asp-action="EditContact"
+      asp-route-id="@Model.Id"
+      method="post">
+
+    <div class="mb-3">
+        <label class="form-label">Name</label>
+        <input asp-for="Name" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Email</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Phone Number</label>
+        <input asp-for="PhoneNumber" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Message</label>
+        <textarea asp-for="Message" class="form-control" rows="4"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Update
+    </button>
+
+    <a asp-action="ContactQueries"
+       asp-controller="Admin"
+       class="btn btn-secondary">
+        Cancel
+    </a>
+</form>

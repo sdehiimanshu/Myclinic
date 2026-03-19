@@ -1,0 +1,59 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewData["Title"] - Admin</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+    <div class="container-fluid">
+        <div class="row">
+
+            <!-- 🔹 SIDEBAR -->
+            <nav class="col-md-2 d-none d-md-block bg-dark sidebar vh-100">
+                <div class="position-sticky pt-3">
+
+                    <h5 class="text-white text-center mb-4">Admin Panel</h5>
+
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Admin" asp-action="Index">
+                                Dashboard
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Admin" asp-action="Appointments">
+                                Appointments
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Admin" asp-action="ContactQueries">
+                                Contact Queries
+                            </a>
+                        </li>
+
+                        <li class="nav-item mt-3">
+                            <a class="nav-link text-danger" asp-controller="Account" asp-action="Logout">
+                                Logout
+                            </a>
+                        </li>
+                    </ul>
+
+                </div>
+            </nav>
+
+            <!-- 🔹 MAIN CONTENT -->
+            <main class="col-md-10 ms-sm-auto px-4 py-4">
+                @RenderBody()
+            </main>
+
+        </div>
+    </div>
+
+</body>
+</html>
