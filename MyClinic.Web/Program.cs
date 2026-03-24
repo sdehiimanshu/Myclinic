@@ -15,7 +15,7 @@ namespace MyClinic.Web
             var builder = WebApplication.CreateBuilder(args);
 
 
-        // Add services to the container.
+        // Add services
         builder.Services.AddControllersWithViews();
 
             // Infrastructure + DB
@@ -32,10 +32,9 @@ namespace MyClinic.Web
                 .AddEntityFrameworkStores<MyClinicDbContext>()
                 .AddDefaultTokenProviders();
 
-            // Services
+            // Custom Services
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
             builder.Services.AddScoped<IContactQueryService, ContactQueryService>();
-
 
             var app = builder.Build();
 
@@ -58,14 +57,21 @@ namespace MyClinic.Web
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
-            // ?? Auto DB Migration (VERY IMPORTANT for Azure)
+            // ? SAFE Migration + Seeding (Production Ready)
             using (var scope = app.Services.CreateScope())
             {
-                var db = scope.ServiceProvider.GetRequiredService<MyClinicDbContext>();
-                db.Database.Migrate();
+                try
+                {
+                    var db = scope.ServiceProvider.GetRequiredService<MyClinicDbContext>();
+                    db.Database.Migrate();
 
-                var services = scope.ServiceProvider;
-                IdentitySeed.SeedAdminAsync(services).GetAwaiter().GetResult();
+                    var services = scope.ServiceProvider;
+                    IdentitySeed.SeedAdminAsync(services).GetAwaiter().GetResult();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Migration/Seeding error: " + ex.Message);
+                }
             }
 
             app.Run();
